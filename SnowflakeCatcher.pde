@@ -61,7 +61,7 @@ class SnowFlake
         flakeY++;
         if(flakeX <5 || flakeX > 495 )
         {
-          
+             flakeX = 250 +235*(flakeX-6)/abs(flakeX -6);
         } 
     }
   }
