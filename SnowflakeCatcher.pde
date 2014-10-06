@@ -1,11 +1,27 @@
+SnowFlake [] Philip;
 void setup()
 {
   size(500,500);
   background(0);
+  Philip = new SnowFlake[50];
+  for (int a = 0;  a < Philip.length; ++a) 
+  {
+    Philip[a] = new SnowFlake();
+  }
 }
 void draw()
 {
-  //your code here
+    for (int a = 0;  a < Philip.length; ++a) 
+  {
+      Philip[a].erase();
+      Philip[a].wrap();
+      
+      Philip[a].move();
+
+      Philip[a].lookDown(); 
+      
+      Philip[a].show();
+  }
 }
 void mouseDragged()
 {
@@ -24,7 +40,7 @@ class SnowFlake
     flakeY = 0;
     for(int a = 0; a < colour.length; a++)
     {
-       colour[a] = 0;
+       colour[a] = 255;
     }
     red = color(255,0,0);
     stuck = false;
@@ -61,13 +77,18 @@ class SnowFlake
         flakeY++;
         if(flakeX <5 || flakeX > 495 )
         {
-             flakeX = 250 +235*(flakeX-6)/abs(flakeX -6);
+             flakeX = 250 + 235*(flakeX-6)/abs(flakeX -6);
         } 
+        else
+          flakeX = flakeX +(int)(Math.random()*4-2);
     }
   }
   void wrap()
   {
-    //your code here
+    if(flakeY >= 500)
+    {
+      flakeY = 0;
+    }
   }
 }
 
