@@ -23,9 +23,15 @@ void draw()
       Philip[a].show();
   }
 }
+void keyPressed()
+{
+  background(0);
+}
 void mouseDragged()
 {
-  //your code here
+  fill(255,0,0);
+  noStroke();
+  ellipse(mouseX,mouseY,10,10);
 }
 
 class SnowFlake
@@ -37,7 +43,7 @@ class SnowFlake
   SnowFlake()
   {
     flakeX = (int)(Math.random()*501);
-    flakeY = 0;
+    flakeY = (int)(Math.random()*-500);
     for(int a = 0; a < colour.length; a++)
     {
        colour[a] = 255;
@@ -49,21 +55,24 @@ class SnowFlake
   }
   void show()
   {
-    strokeWeight(5);
+    strokeWeight(14);
     stroke(colour[0],colour[1],colour[2]);
     point(flakeX, flakeY);
   }
   void lookDown()
   {
-    if(get(flakeX,flakeY+5) == red)
+    if(get(flakeX,flakeY+14) == red)
     {
         stuck = true;
     } 
+    else
+      stuck = false;
   }
   void erase()
   {
-    strokeWeight(5);
     stroke(0);
+    strokeWeight(18);
+    stroke(5);
     point(flakeX,flakeY);
   }
   void move()
@@ -74,13 +83,14 @@ class SnowFlake
     }
     else 
     {
-        flakeY++;
+     
+        flakeY=flakeY + (int)(Math.random()*3);
         if(flakeX <5 || flakeX > 495 )
         {
              flakeX = 250 + 235*(flakeX-6)/abs(flakeX -6);
         } 
         else
-          flakeX = flakeX +(int)(Math.random()*4-2);
+          flakeX = flakeX +(int)((Math.random()*8)-4);
     }
   }
   void wrap()
